@@ -168,27 +168,6 @@ namespace MVC_Sample_1.Controllers
             return _context.Cars.Any(e => e.Id == id);
         }
 
-        private async Task<Weather>GetWeather(string town)
-        {
-            HttpClient client = new HttpClient();
-            Weather weather = null;
-            string uri = "http://api.weatherapi.com/v1/current.json?key=acf4e23413a048439bc132919211504&q=";
-            string townWeather = uri + "Malmö";
-
-            if (String.IsNullOrEmpty(town))
-            {
-                townWeather = uri + "Malmö";
-            }
-            else
-            {
-                townWeather = uri + town;
-            }
-            HttpResponseMessage response = await client.GetAsync(townWeather);
-            if(response.IsSuccessStatusCode)
-            {
-                weather = JsonConvert.DeserializeObject<Weather>(await response.Content.ReadAsStringAsync());
-            }
-            return weather;
-        }
+        
     }
 }
