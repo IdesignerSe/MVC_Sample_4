@@ -27,6 +27,8 @@ namespace MVC_Sample_1.Controllers
             Weather weather = await GetWeather(town);
             ViewData["Temperature"] = weather.Current.TempC;
             ViewData["Town"] = weather.Location.Name;
+            ViewData["Weather"] = weather;
+
 
             if (String.IsNullOrEmpty(search))
             {
@@ -168,6 +170,36 @@ namespace MVC_Sample_1.Controllers
             return _context.Cars.Any(e => e.Id == id);
         }
 
-        
+        private async Task<Weather> GetWeather(string town)
+        {
+            //var culture = new CultureInfo("us-EN");
+            //CultureInfo.DefaultThreadCurrentCulture = culture;
+            //CultureInfo.DefaultThreadCurrentUICulture = culture;
+            HttpClient client = new HttpClient();
+            Weather weather = null;
+            string uri = "http://api.weatherapi.com/v1/current.json?key=c5b4e15a3a3548dd848121810211702&q=";
+            string townWeather = uri + "Malmö";
+            if (String.IsNullOrEmpty(town))
+            {
+                townWeather = uri + "Malmö";
+            }
+            else
+            {
+                townWeather = uri + town;
+            }
+            HttpResponseMessage response = await client.GetAsync(townWeather);
+            if (response.IsSuccessStatusCode)
+            {
+                //weather = await response.Content.ReadAsAsync<Weather>(new List<MediaTypeFormatter>() { new XmlMediaTypeFormatter { UseXmlSerializer = true }, new JsonMediaTypeFormatter() });
+                //var res = await response.Content.ReadAsAsync<Weather>();
+                //weather = await JsonSerializer.Deserialize(res);
+                //weather = JsonConvert.DeserializeObject<Weather>(await response.Content.ReadAsStringAsync(), new JsonSerializerSettings
+                //{
+                //    Culture = new System.Globalization.CultureInfo("en-UK")  //Replace tr-TR by your own culture
+                //});
+                weather = JsonConvert.DeserializeObject<Weather>(await response.Content.ReadAsStringAsync());
+            }
+            return weather;
+        }
     }
 }

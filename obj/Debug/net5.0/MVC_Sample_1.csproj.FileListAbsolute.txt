@@ -602,3 +602,5 @@ C:\Users\elev\Documents\GitHub\MVC_Sample_4\obj\Debug\net5.0\MVC_Sample_1.dll
 C:\Users\elev\Documents\GitHub\MVC_Sample_4\obj\Debug\net5.0\ref\MVC_Sample_1.dll
 C:\Users\elev\Documents\GitHub\MVC_Sample_4\obj\Debug\net5.0\MVC_Sample_1.pdb
 C:\Users\elev\Documents\GitHub\MVC_Sample_4\obj\Debug\net5.0\MVC_Sample_1.genruntimeconfig.cache
+C:\Users\elev\Documents\GitHub\MVC_Sample_4\obj\Debug\net5.0\Razor\Views\Weather\_Weather.cshtml.g.cs
+C:\Users\elev\Documents\GitHub\MVC_Sample_4\obj\Debug\net5.0\Razor\Views\Weather\Index.cshtml.g.cs

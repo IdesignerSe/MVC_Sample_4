@@ -19,7 +19,7 @@ namespace MVC_Sample_1.Controllers
             Weather weather = await GetWeather(town);
             ViewData["Temperature"] = weather.Current.TempC;
             ViewData["Town"] = weather.Location.Name;
-            return PartialView();
+            return PartialView("_Weather");
         }
 
         private async Task<Weather> GetWeather(string town)
